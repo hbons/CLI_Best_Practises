@@ -1,8 +1,17 @@
-html, body {
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html, body {
   height: 100%;
   min-height: 100%;
+  font-family: "Lato";
 }
 
 #wrapper {
@@ -13,23 +22,37 @@ html, body {
 nav {
   float: left;
   height: 100%;
-  background-color: red;
+  background-color: #e22434;
   width: 200px;
+  border-right: 1px #c21a28 solid;
+  padding-top: 48px;
 }
 
 nav a {
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 8px 16px;
   text-decoration: none;
+  color: #fff;
+  opacity: 0.61;
 }
 
 nav a:hover {
-  background-color: white;
+  background-color: #e22434;
+  opacity: 1.0;
 }
 
 article {
-  float: right;
+  text-align: left;
+  float: left;
+  padding: 48px;
+  width: 600px;
 }
 
+article p {
 
+}
+
+h1, h2, h3 {
+
+}
