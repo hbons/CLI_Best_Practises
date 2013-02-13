@@ -1,4 +1,16 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+nav {
+  float: left;
+  height: 100%;
+  background-color: red;
+  width: 200px;
+}
+
+article {
+  float: right;
 }
