@@ -21,6 +21,11 @@ nav a {
   display: block;
   width: 100%;
   padding: 12px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: white;
 }
 
 article {
