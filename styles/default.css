@@ -56,3 +56,8 @@ article p {
 h1, h2, h3 {
 
 }
+
+blockquote {
+  font-family: monospace;
+  margin: 12px 0;
+}
