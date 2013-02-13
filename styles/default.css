@@ -17,6 +17,11 @@ nav {
   width: 200px;
 }
 
+nav a {
+  display: block;
+  width: 100%;
+}
+
 article {
   float: right;
 }
