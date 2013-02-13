@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -20,6 +20,7 @@ nav {
 nav a {
   display: block;
   width: 100%;
+  padding: 12px;
 }
 
 article {
