@@ -4,6 +4,10 @@ body {
   height: 100%;
 }
 
+#wrapper {
+  height: 100%;
+}
+
 nav {
   float: left;
   height: 100%;
@@ -14,3 +18,5 @@ nav {
 article {
   float: right;
 }
+
+
