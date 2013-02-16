@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>CLI Best Practises</title>
+  <link rel="stylesheet" type="text/css" href="styles/default.css" />
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav>
+        <a href="#Commands">Commands</a>
+        <a href="#Arguments">Arguments</a>
+        <a href="#Options">Options</a>
+        <a href="#ExitCodes">Exit Codes</a>
+        <a href="#Manuals">Manuals</a>
+        <a href="#HelpScreen">Help Screen</a>
+        <a href="#Tools">Tools</a>
+        <a href="#Sources">Sources</a>
+      </nav>
+      <article>
+        <p class="note"><i><b>Note:</b> This is a draft and a work in progress. Anything written here may be subject to change. Contact <a href="mailto:hbons@redhat.com">hbons@redhat.com</a> for comments or questions.</i></p>
+        <h1>CLI Best Practises</h1>
+        <p>It may be that your product provides (or requires) some interaction on the command line interface (CLI) level. This document aims to provide guidelines and best practises to create a usable CLI application. These best practises were set up to work in a world with lots of different kinds of CLI tools adhering to many different conventions.
+</p>
+        <h2 id="Commands">Commands</h2>
+        <p>structure of a command. </p>
+<pre>
+command [-o] [--option] [--option=value] argument
+</pre>
+<p>    Utility names should be between two and nine characters, inclusive.</p>
+        
+         <p>All options may precede arguments or may be put after them.</p>
+        <p>People shouldn't have to move the cursor back when they forgot to type options before the arguments. Allow options at any position in the command.</p>
+        <h2 id="Arguments">Arguments</h2>
+        <p>Don't just continue on invalid arguments. always mention the error and stop the process.</p>
+        <p>Be forgiving about synonyms. Allow for "quit" but also "exit" for example, to prevent annoyance.</p>
+        <p>Always require an argument if your command can do something descructive.</p>
+        
+        <h2 id="Options">Options</h2>
+
+        <p>Provide both long and short options for everything. Shorter options are easier in day to day use, whilst longer option make commands easier to understand
+        when they're being used in automation processes and/or scripts.</p>
+        <p>Make long option names as descriptive as possible, without using too many characters. (TODO: how many?)</p>
+        <p>If possible, use the first letter of the long option name as the letter for the short option. If that letter is already taken by a different short option, use a letter that's distinctive for that word.</p>
+        <p>Unix is generally case sensitive, so don't be permissive with case changes. "-v" and "-V" are different things and shouldn't be interchangable.</p>
+        <p>Don't use the single dash notation for long option names, as the whole could be confused as a series of options. For example: "-abc" is the same as specifying the "-a", "-b", and "-c" options at once, whilst "--abc" triggers the "abc" option. Options without option arguments should be accepted when grouped behind one '-' indicator.</p>
+            <p>Error out when two mutual exclusive options are given. Don't assume one over the other and continue.</p>
+           
+        <h3 id="OptionArguments">Option Arguments</h3>
+        <p>Some options require their own arguments. Always use the "=" ("equals") sign when specifying option arguments like so:
+<pre>
+command --option=argument
+</pre>
+            <p>This is to prevent confusion about what the argument applies to. By using a space instead of the "=" sign it won't always be clear whether the argument given applies to the option or the command itself. Option arguments should not be optional.</p>
+        <h2 id="ExitCodes">Exit codes</h2>
+        <p>Make sure the exit code of the help screen is zero</p>
+        
+        <h2 id="Manuals">Manuals</h2>
+        <p>If you can, provide manual pages with your commands. These should be available by calling the "man" command followed by your command name:</p>
+<pre>man command</pre>
+        <p>Also create a reference to the fact that this manual is available through your command's help screen.</p>
+        
+        
+        <h2 id="HelpScreen">Help Screen</h2>
+        <h3>Activation</h3>
+        <p> TODO: When to show the help screen.</p>
+        <p> Be permissive about people asking for help. Next to "--help", also allow for help, -help, -h, -?, and ?.</p>
+        
+        <h3>Anatomy</h3>
+        <p>Keep the help screen as brief as possible. Move more in-depth information to the command's manual.</p>
+        <p>Optimise for scanning: show long options before short options.</p>
+        <p> Keep the user's terminal application's width in mind. Large displays are common today, but there are situations where people have to work in more restricted environments or with older hardware. Try to keep every line within 80 characters, wrap lines after that number.</p>
+           
+<pre>
+Usage: mkdir [OPTION]... DIRECTORY...<br>
+Create the DIRECTORY(ies), if they do not already exist.
+
+Options:
+  -m=MODE, --mode=MODE    set file mode (as in chmod), not a=rwx - umask
+  -p,      --parents      create parent directories as needed
+  -v,      --verbose      print a message for each created directory
+  -Z=CTX,  --context=CTX  set the SELinux security context of each created
+                          directory to CTX
+                          
+  -h, --help              display this help and exit
+  -V, --version           output version information and exit
+
+For complete documentation, run: 'man mkdir'
+Report problems to: youremail@domain.com
+</pre>
+         
+      <p>Add an email address or link to the issue tracker at the end of the screen if desired.</p>
+      <p>Sort the options by alphabet, using the letters of the short options. exceptions are --version and --help, seperate these from the other options by a blank line</p>
+      <p>Provide both the --help/--h and --version/-v options at all times.</p>
+           <p>Supply a "--version" option with all of your commands. The output must be easy for a program to parse. The version number starts after the last space. In addition, it contains the canonical name for the program, like this:</p>
+<pre>
+Application Name 1.0
+</pre>
+<h3>Style</h3>         
+      <p>Indent text using two spaces. Also use two spaces to separate the descriptions from the options. Wrap long descriptions and keep the right indentation.</p>   
+        <h2 id="Tools">Tools</h2>
+        <p>"getopts" is a small library that helps you parse command line arguments and options.</p>
+        
+        <h2 id="Sources">Sources</h2>
+        <p><a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">The Open Group Base Specifications, Chapter 12</a><br>
+        <a href="http://www.gnu.org/prep/standards/standards.html">GNU Coding Standards, Chapter 4</a></p>
+        <br>
+        </article>
+    </div>
+  </body>
+</html>

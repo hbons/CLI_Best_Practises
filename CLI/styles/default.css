@@ -11,7 +11,7 @@
 html, body {
   height: 100%;
   min-height: 100%;
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
 }
 
 #wrapper {
@@ -25,7 +25,7 @@ nav {
   background-color: #e22434;
   width: 200px;
   border-right: 1px #c21a28 solid;
-  padding-top: 48px;
+  padding-top: 56px;
 }
 
 nav a {
@@ -37,8 +37,8 @@ nav a {
   opacity: 0.61;
 }
 
-nav a:hover {
-  background-color: #e22434;
+nav a:hover, nav a:target, nav a:focus, nav a:active {
+  background-color: #222;
   opacity: 1.0;
 }
 
@@ -46,17 +46,56 @@ article {
   text-align: left;
   float: left;
   padding: 48px;
-  width: 600px;
+  width: 680px;
+  height: 100%;
+  min-height: 100%;
+  overflow-y: scroll;
 }
 
 article p {
   font-size: 16px;
   line-height: 26px;
   margin: 12px 0;
+  color: #555;
 }
 
 
-blockquote {
+pre {
   font-family: monospace;
-  margin: 12px 0;
+  margin: 20px 0;
+  border-radius: 5px;
+  padding: 18px;
+  background-color: #fefce5;
+  border: 1px solid #ffea3a;
+  font-size: 12px;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+p + h1, p + h2, p + h3, blockquote + h2 {
+  margin-top: 32px;
+}
+
+p.note {
+  opacity: 0.5;
+}
+
+li {
+  margin-left: 28px;
+  line-height: 26px;
+  color: #555;
 }
