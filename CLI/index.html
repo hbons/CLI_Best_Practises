@@ -54,7 +54,12 @@ command --option=argument
 </pre>
             <p>This is to prevent confusion about what the argument applies to. By using a space instead of the "=" sign it won't always be clear whether the argument given applies to the option or the command itself. Option arguments should not be optional.</p>
         <h2 id="ExitCodes">Exit codes</h2>
-        <p>Make sure the exit code of the help screen is zero</p>
+        <p>Make sure the exit code of the help screen is zero.</p>
+        <p>Normally you should use the exit status to report very broad information about success or failure. You can't provide a lot of detail about the reasons for the failure, and most parent processes would not want much detail anyway.<p>
+<p>The most common convention is simply 0 for success and 1 for failure. Programs that perform comparison use a different convention: they use status 1 to indicate a mismatch, and status 2 to indicate an inability to compare. Your program should follow an existing convention if an existing convention makes sense for it.</p>
+
+<p>A general convention reserves status values 128 and up for special purposes. In particular, the value 128 is used to indicate failure to execute another program in a subprocess. This convention is not universally obeyed, but it is a good idea to follow it in your programs. </p>
+        </p>
         
         <h2 id="Manuals">Manuals</h2>
         <p>If you can, provide manual pages with your commands. These should be available by calling the "man" command followed by your command name:</p>
