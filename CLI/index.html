@@ -24,57 +24,78 @@
         <p>It may be that your product provides (or requires) some interaction on the command line interface (CLI) level. This document aims to provide guidelines and best practises to create a usable CLI application. These best practises were set up to work in a world with lots of different kinds of CLI tools adhering to many different conventions.
 </p>
         <h2 id="Commands">Commands</h2>
+        <h3>Structure</h3>
         <p>structure of a command. </p>
 <pre>
 command [-o] [--option] [--option=value] argument
 </pre>
 <p>    Utility names should be between two and nine characters, inclusive.</p>
         
-         <p>All options may precede arguments or may be put after them.</p>
+        <p>All options may precede arguments or may be put after them.</p>
         <p>People shouldn't have to move the cursor back when they forgot to type options before the arguments. Allow options at any position in the command.</p>
+        <h3>Patterns</h3>
+        
         <h2 id="Arguments">Arguments</h2>
+        
         <p>Don't just continue on invalid arguments. always mention the error and stop the process.</p>
         <p>Be forgiving about synonyms. Allow for "quit" but also "exit" for example, to prevent annoyance.</p>
         <p>Always require an argument if your command can do something descructive.</p>
         
+        
         <h2 id="Options">Options</h2>
-
-        <p>Provide both long and short options for everything. Shorter options are easier in day to day use, whilst longer option make commands easier to understand
-        when they're being used in automation processes and/or scripts.</p>
-        <p>Make long option names as descriptive as possible, without using too many characters. (TODO: how many?)</p>
-        <p>If possible, use the first letter of the long option name as the letter for the short option. If that letter is already taken by a different short option, use a letter that's distinctive for that word.</p>
-        <p>Unix is generally case sensitive, so don't be permissive with case changes. "-v" and "-V" are different things and shouldn't be interchangable.</p>
-        <p>Don't use the single dash notation for long option names, as the whole could be confused as a series of options. For example: "-abc" is the same as specifying the "-a", "-b", and "-c" options at once, whilst "--abc" triggers the "abc" option. Options without option arguments should be accepted when grouped behind one '-' indicator.</p>
-            <p>Error out when two mutual exclusive options are given. Don't assume one over the other and continue.</p>
+        
+        <p><b>TODO: </b> What is an option?</p>
+        
+        <p>Provide both long (<span>--long</span>) and short (<span>-s</span>) notations for every option. Shorter options are faster to type in day to day use, whilst longer option make commands easier to understand when they're being used in automation processes or scripts.</p>
+        
+        <p>Make long option names as descriptive as possible, without using too many characters. <b>TODO:</b> how many?</p>
+        
+        <p>If possible, use the first character of the long option name as the character for the short option. If that character is already taken by a different short option, use a character that's as distinctive as possible for that word.</p>
+        
+        <p>Unix is case sensitive generally, so don't be permissive with case changes. <span>-v</span> and <span>-V</span> may have different meanings and shouldn't be interchangable.</p>
+        
+        <p>Options without option arguments should be accepted when grouped behind one <span>-</span> indicator. For this reason, don't use the short option notation for long option names, as the whole could be confused as a series of options. For example: <span>-abc</span> is the same as specifying the <span>-a</span>, <span>-b</span>, and <span>-c</span> options at once, whilst <span>--abc</span> triggers the "abc" long option. 
+        
+        <p>Error out when two mutually exclusive options are given. Never assume one over the other and continue. Tell the user what went wrong.</p>
            
+        
         <h3 id="OptionArguments">Option Arguments</h3>
-        <p>Some options require their own arguments. Always use the "=" (equals) sign when specifying option arguments like so:
+        <p>Some options require their own arguments. Always use the <span>=</span> (equals) sign when specifying option arguments like so:
 <pre>
 command --option=argument
 </pre>
-            <p>This is to prevent confusion about what the argument applies to. By using a space instead of the "=" sign it won't always be clear whether the argument given applies to the option or the command itself. Option arguments should not be optional.</p>
+            <p>This is to prevent confusion about what the argument applies to. By using a space instead of the <span>=</span> sign it won't always be clear whether the argument given applies to the option or the command itself. Option arguments should not be optional.</p>
+            
+            
         <h2 id="ExitCodes">Exit codes</h2>
+        
         <p>Make sure the exit code of the help screen is zero.</p>
         <p>Normally you should use the exit status to report very broad information about success or failure. You can't provide a lot of detail about the reasons for the failure, and most parent processes would not want much detail anyway.<p>
-<p>The most common convention is simply 0 for success and 1 for failure. Programs that perform comparison use a different convention: they use status 1 to indicate a mismatch, and status 2 to indicate an inability to compare. Your program should follow an existing convention if an existing convention makes sense for it.</p>
+        <p>The most common convention is simply 0 for success and 1 for failure. Programs that perform comparison use a different convention: they use status 1 to indicate a mismatch, and status 2 to indicate an inability to compare. Your program should follow an existing convention if an existing convention makes sense for it.</p>
 
-<p>A general convention reserves status values 128 and up for special purposes. In particular, the value 128 is used to indicate failure to execute another program in a subprocess. This convention is not universally obeyed, but it is a good idea to follow it in your programs. </p>
+        <p>A general convention reserves status values 128 and up for special purposes. In particular, the value 128 is used to indicate failure to execute another program in a subprocess. This convention is not universally obeyed, but it is a good idea to follow it in your programs. </p>
         </p>
         
+        
         <h2 id="Manuals">Manuals</h2>
-        <p>Having good documention available is important. There's a lot of information available on commands on the web, but your users may find themselves in a situation where they can't access the internet. If you can, provide manual pages with all of your commands. These should be available by calling the "man" command followed by your command name:</p>
+
+        <p>Having good documention available is important. There's a lot of information available on commands on the web, but your users may find themselves in a situation where they can't access the internet. If you can, provide manual pages with all of your commands. These should be available by calling the <span>man</span> command followed by your command name:</p>
 <pre>man command</pre>
+
         <p>Also create a reference to the fact that this manual is available through your command's help screen. See the <a href="#HelpScreen">Help Screen</a> section for an example on how to do this.</p><p><a href="http://archive09.linux.com/feature/34212">"What you need to know to write man pages"</a> has more information on how to write a manual page.</p>
         
         
         <h2 id="HelpScreen">Help Screen</h2>
+
         <h3>Activation</h3>
+
         <p> TODO: When to shrow the help screen. Feel free to show the help screen when the users has entered an invalid command, but always mention what has gone wrong:</p>
 <pre>
 Invalid argument: -g
 # Show the help screen here
 </pre>
-        <p> Be permissive about people asking for help. Next to "--help", also allow for help, -help, -h, -?, and ?.</p>
+        <p> Be permissive when people ask for help. Next to <span>--help</span>, also allow for <span>help</span>, <span>-help</span>, <span>-h</span>, <span>-?</span>, and <span>?</span>.</p>
+
         
         <h3>Anatomy</h3>
         <p>Keep the help screen as brief as possible. Move more in-depth information to the command's manual.</p>
@@ -99,25 +120,28 @@ For complete documentation, run: 'man mkdir'
 Report problems to: youremail@domain.com
 </pre>
          
-      <p>Sort the options by alphabet, using the letters of the short options. exceptions are --version and --help, seperate these from the other options by a blank line</p>
-      <p>Provide both the --help/--h and --version/-v options at all times. They can be grouped together at the end of the list of options. This makes the list of uncommon options somewhat easier to scan.</p>
-           <p>Supply a "--version" option with all of your commands. The output must be easy for a program to parse. The version number starts after the last space. In addition, it contains the canonical name for the program, like this:</p>
+      <p>Sort the options by alphabet, using the letters of the short options. exceptions are <span>--version</span> and <span>--help</span>.
+
+      <p>Provide both the <span>--help</span> or (<span>-h</span>) and <span>--version</span> (or <span>-v</span>) options at all times. They can be grouped together at the end of the list of options, seperated by a blank line. This makes the list of uncommon options somewhat easier to scan.</p>
+
+      <p>Supply a <span>--version</span> option with all of your commands. The output must be easy for a program to parse. The version number starts after the last space. In addition, it contains the canonical name for the program, like this:</p>
 <pre>
 Application Name 1.0
 </pre>
       <p>Add an email address or link to the issue tracker at the end of the screen if desired.</p>
-<h3>Style</h3>         
+
+      <h3>Style</h3>         
       <p>Indent text using two spaces. Also use two spaces to separate the descriptions from the options. Wrap long descriptions and keep the right indentation.</p>   
-        <p>Optimise for scanning: align all the options vertically into columns.</p>
+      <p>Optimise for scanning: align all the options vertically into columns.</p>
         
-        <h2 id="Tools">Tools</h2>
-        <p>"getopts" is a small library that helps you parse command line arguments and options.</p>
+      <h2 id="Tools">Tools</h2>
+      <p>"getopts" is a small library that helps you parse command line arguments and options.</p>
         
-        <h2 id="Sources">Sources</h2>
-        <p><a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">The Open Group Base Specifications, Chapter 12</a><br>
-        <a href="http://www.gnu.org/prep/standards/standards.html">GNU Coding Standards, Chapter 4</a></p>
-        <br>
-        </article>
+      <h2 id="Sources">Sources</h2>
+      <p><a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">The Open Group Base Specifications, Chapter 12</a><br>
+      <a href="http://www.gnu.org/prep/standards/standards.html">GNU Coding Standards, Chapter 4</a></p>
+      <br>
+      </article>
     </div>
   </body>
 </html>

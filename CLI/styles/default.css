@@ -94,6 +94,16 @@ p.note {
   opacity: 0.5;
 }
 
+p span {
+  border-radius: 5px;
+  padding: 3px 8px;
+  margin: 2px;
+  background-color: #fefce5;
+  border: 1px solid #ffea3a;
+  font-size: 12px;
+  font-family: monospace;
+}
+
 li {
   margin-left: 28px;
   line-height: 26px;
