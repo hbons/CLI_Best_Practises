@@ -78,7 +78,7 @@ Invalid argument: -g
         
         <h3>Anatomy</h3>
         <p>Keep the help screen as brief as possible. Move more in-depth information to the command's manual.</p>
-        <p>Optimise for scanning: align all the options vertically.</p>
+        
         <p> Keep the user's terminal application's width in mind. Large displays are common today, but there are situations where people have to work in more restricted environments or with older hardware. Try to keep every line within 80 characters, wrap lines after that number.</p>
            
 <pre>
@@ -99,15 +99,17 @@ For complete documentation, run: 'man mkdir'
 Report problems to: youremail@domain.com
 </pre>
          
-      <p>Add an email address or link to the issue tracker at the end of the screen if desired.</p>
       <p>Sort the options by alphabet, using the letters of the short options. exceptions are --version and --help, seperate these from the other options by a blank line</p>
       <p>Provide both the --help/--h and --version/-v options at all times. They can be grouped together at the end of the list of options. This makes the list of uncommon options somewhat easier to scan.</p>
            <p>Supply a "--version" option with all of your commands. The output must be easy for a program to parse. The version number starts after the last space. In addition, it contains the canonical name for the program, like this:</p>
+      <p>Add an email address or link to the issue tracker at the end of the screen if desired.</p>
 <pre>
 Application Name 1.0
 </pre>
 <h3>Style</h3>         
       <p>Indent text using two spaces. Also use two spaces to separate the descriptions from the options. Wrap long descriptions and keep the right indentation.</p>   
+        <p>Optimise for scanning: align all the options vertically into columns.</p>
+        
         <h2 id="Tools">Tools</h2>
         <p>"getopts" is a small library that helps you parse command line arguments and options.</p>
         
