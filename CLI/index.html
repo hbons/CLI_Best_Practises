@@ -141,7 +141,7 @@ Application Name 1.0
        
        <h2 id="ExitCodes">Exit codes</h2>
         
-        <p>An exit code is a number that a command reports after when having finished execution. Exit codes can have a value from 0 to 255.Make sure the exit code of the help screen is zero.</p>
+        <p>An exit code is a number that a command reports after when having finished execution. Exit codes can have a value from 0 to 255. Make sure the exit code of the help screen is zero, unless the help screen was invoked by providing an invalid argument or option.</p>
         
         <p>The most common convention is to use an exit code of <span>0</span> for a successful execution, and <span>1</span> for failure. A higher number up to <span>255</span> may be used to define different types of errors. Knowing the reason why a command failed can be useful information in scripts, but only use higher exit codes if you document them well in the <span>man</span> page, otherwise just use <span>1</span>.</p>
         </p>
