@@ -36,7 +36,7 @@ command [OPTIONS] [ARGUMENTS]
         <p>Arguments are values that can be passed to a command as parameters. Usually arguments are treated as subjects. For example: you may pass a string of text or a file path to as an argument to a command to perform operations on.</p>
         <p>Always require an argument if your command can do something descructive. You don’t want people to run your command without arguments in an attempt to get help and end up with unintended consequences.</p>
         <p>Don’t just continue on invalid arguments. always mention what the error is and stop the process.</p>
-        <p>Be forgiving about synonyms. Allow for "quit" but also "exit" for example, to prevent annoyance.</p>
+        <p>Be forgiving about synonyms. Allow for <span>quit</span> but also <span>exit</span> for example, to prevent annoyance.</p>
         
         
         <h2 id="Options">Options</h2>
@@ -58,7 +58,7 @@ command arguments --option # Also valid
         
         <p>Unix is case sensitive generally, so don’t be permissive with case changes. <span>-v</span> and <span>-V</span> may have different meanings and shouldn’t be interchangable.</p>
         
-        <p>Options without option arguments should be accepted when grouped behind one <span>-</span> indicator. For this reason, don’t use the short option notation for long option names, as the whole could be confused as a series of options. For example: <span>-abc</span> is the same as specifying the <span>-a</span>, <span>-b</span>, and <span>-c</span> options at once, whilst <span>--abc</span> triggers the "abc" long option. 
+        <p>Options without option arguments should be accepted when grouped behind one <span>-</span> indicator. For this reason, don’t use the short option notation for long option names, as the whole could be confused as a series of options. For example: <span>-abc</span> is the same as specifying the <span>-a</span>, <span>-b</span>, and <span>-c</span> options at once, whilst <span>--abc</span> triggers the “abc”  long option. 
         
         <p>Error out when two mutually exclusive options are given. Never assume one over the other and continue. Tell the user what went wrong.</p>
            
@@ -86,7 +86,7 @@ eggs --method # Doesn’t make sense
         <p>Having good documention available is important. There’s a lot of information available on commands on the web, but your users may find themselves in a situation where they can’t access the internet. If you can, provide manual pages with all of your commands. These should be available by calling the <span>man</span> command followed by your command name:</p>
 <pre>man command</pre>
 
-        <p>Also create a reference to the fact that this manual is available through your command’s help screen. See the <a href="#HelpScreen">Help Screen</a> section for an example on how to do this.</p><p><a href="http://archive09.linux.com/feature/34212">"What you need to know to write man pages"</a> has more information on how to write a manual page.</p>
+        <p>Also create a reference to the fact that this manual is available through your command’s help screen. See the <a href="#HelpScreen">Help Screen</a> section for an example on how to do this.</p><p><a href="http://archive09.linux.com/feature/34212">“What you need to know to write man pages”</a> has more information on how to write a manual page.</p>
         
         
         <h2 id="HelpScreen">Help Screen</h2>
