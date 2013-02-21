@@ -69,7 +69,11 @@ command --option=argument
         
         <h2 id="HelpScreen">Help Screen</h2>
         <h3>Activation</h3>
-        <p> TODO: When to show the help screen.</p>
+        <p> TODO: When to shrow the help screen. Feel free to show the help screen when the users has entered an invalid command, but always mention what has gone wrong:</p>
+<pre>
+Invalid argument: -g
+# Show the help screen here
+</pre>
         <p> Be permissive about people asking for help. Next to "--help", also allow for help, -help, -h, -?, and ?.</p>
         
         <h3>Anatomy</h3>
@@ -97,7 +101,7 @@ Report problems to: youremail@domain.com
          
       <p>Add an email address or link to the issue tracker at the end of the screen if desired.</p>
       <p>Sort the options by alphabet, using the letters of the short options. exceptions are --version and --help, seperate these from the other options by a blank line</p>
-      <p>Provide both the --help/--h and --version/-v options at all times.</p>
+      <p>Provide both the --help/--h and --version/-v options at all times. They can be grouped together at the end of the list of options. This makes the list of uncommon options somewhat easier to scan.</p>
            <p>Supply a "--version" option with all of your commands. The output must be easy for a program to parse. The version number starts after the last space. In addition, it contains the canonical name for the program, like this:</p>
 <pre>
 Application Name 1.0

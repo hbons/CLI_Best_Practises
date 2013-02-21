@@ -86,7 +86,7 @@ h3 {
   margin-bottom: 16px;
 }
 
-p + h1, p + h2, p + h3, blockquote + h2 {
+p + h1, p + h2, p + h3, blockquote + h2, blockquote + h3 {
   margin-top: 32px;
 }
 
